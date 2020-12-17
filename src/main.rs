@@ -4,6 +4,10 @@ fn main() {
 
     // let result = roman_to_int(String::from("MCMXCIV"));
     // println!("result : {}",result);
+
+    
+    let result = longest_common_prefix(vec!["dog".to_string(),"racecar".to_string(),"car".to_string()]);
+    println!("result : {}",result);
 }
 
 /*
@@ -194,17 +198,22 @@ pub fn longest_common_prefix(strs: Vec<String>) -> String {
     if strs.len() <= 0 {
          return String::from("");
     }
+    let mut prefix = strs[0].clone();
 
-    match strs.first() {
-        Some(first) => {
-            first
-        },
-        _ => {},
-    };
-    
+    for item in strs {
+        if prefix.len() <= 0 {
+            return "".to_string()
+        };
+        while prefix.len() > 0 {
+            if !item.starts_with(&prefix){
+                prefix = String::from(&prefix[..(prefix.len()-1)]);
+            } else {
+                break;
+            }
+        }
+    }
 
-
-    return String::from("");
+    return prefix;
 }
 
 
